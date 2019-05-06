@@ -22,8 +22,17 @@
 
 package org.asqatasun.crawler.extractor.listener;
 
+import java.net.URI;
+
 /**
- * @TODO : To be removed
+ *
  * @author jkowalczyk
  */
-public interface ExtractorCSSListener {}
+public interface ExtractorCSSListener {
+
+    /**
+     *
+     * @param uri
+     */
+    void computeCSSResource(URI uri);
+}

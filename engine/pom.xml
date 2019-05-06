@@ -28,6 +28,7 @@
         <module>commons-entity-jpa</module>
         <module>reference</module>
         <module>audit</module>
+        <module>crawler</module>
         <module>rule-implementation-loader</module>
         <module>nomenclatureloader</module>
         <module>contentloader</module>

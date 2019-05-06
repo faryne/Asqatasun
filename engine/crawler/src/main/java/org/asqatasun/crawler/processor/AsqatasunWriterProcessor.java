@@ -22,6 +22,7 @@
 package org.asqatasun.crawler.processor;
 
 import java.io.IOException;
+import java.net.URI;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.regex.Pattern;
@@ -174,12 +175,12 @@ public class AsqatasunWriterProcessor extends Processor
 
     /**
      * 
-     * @param curi
+     * @param uri
      */
     @Override
-    public synchronized void computeResource(CrawlURI curi) {
-        Logger.getLogger(this.getClass()).debug("compute resource? " + curi.getURI());
-        extractorHTMLListener.computeResource(curi);
+    public synchronized void computeResource(URI uri) {
+        Logger.getLogger(this.getClass()).debug("compute resource? " + uri);
+        extractorHTMLListener.computeResource(uri);
     }
 
     /**
@@ -187,11 +188,11 @@ public class AsqatasunWriterProcessor extends Processor
      * content with its css parents. Each CSS resource has to be associated with
      * a HTML content. By keeping this relation, we can combine a child CSS
      * with the HTML contents combined with its parents.
-     * @param curi
+     * @param uri
      */
     @Override
-    public synchronized void computeCSSResource(CrawlURI curi) {
-        this.extractorCSSListener.computeCSSResource(curi);
+    public synchronized void computeCSSResource(URI uri) {
+        this.extractorCSSListener.computeCSSResource(uri);
     }
 
 }

@@ -21,9 +21,7 @@
  */
 package org.asqatasun.crawler.framework;
 
-import org.apache.commons.httpclient.HttpConnection;
 import org.apache.log4j.Logger;
-import org.archive.httpclient.HttpRecorderMethod;
 import org.archive.modules.CrawlURI;
 import org.archive.modules.fetcher.FetchHTTP;
 import org.asqatasun.crawler.frontier.AsqatasunBdbFrontier;
@@ -33,8 +31,6 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author jkowalczyk
  */
 public class AsqatasunFetchHTTP extends FetchHTTP{
-
-    private static final long serialVersionUID = 5284296477962226238L;
 
     private AsqatasunBdbFrontier frontier;
     @Autowired
@@ -50,8 +46,8 @@ public class AsqatasunFetchHTTP extends FetchHTTP{
     }
 
     @Override
-    protected boolean checkMidfetchAbort(CrawlURI curi, HttpRecorderMethod method, HttpConnection conn) {
-        boolean checkMidfetchAbort= super.checkMidfetchAbort(curi, method, conn);
+    protected boolean checkMidfetchAbort(CrawlURI curi) {
+        boolean checkMidfetchAbort= super.checkMidfetchAbort(curi);
         Logger.getLogger(this.getClass()).debug("curi.isPrerequisite() "+curi.isPrerequisite());
         Logger.getLogger(this.getClass()).debug("curi.getContentType() "+curi.getContentType());
         Logger.getLogger(this.getClass()).debug("checkMidfetchAbort "+checkMidfetchAbort);

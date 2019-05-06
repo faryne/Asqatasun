@@ -26,6 +26,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.*;
 import java.util.regex.Pattern;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.archive.io.GzipHeader;
@@ -365,7 +366,7 @@ public class CrawlerImpl implements Crawler, ContentWriter {
 
     /**
      * 
-     * @param curi
+     * @param uri
      * @param charset
      * @param fetchStatus
      * @param sourceCode
@@ -416,7 +417,7 @@ public class CrawlerImpl implements Crawler, ContentWriter {
 
     /**
      * 
-     * @param curi
+     * @param uri
      * @param charset
      * @param page
      * @param sourceCode
@@ -453,7 +454,6 @@ public class CrawlerImpl implements Crawler, ContentWriter {
     /**
      *
      * @param curi
-     * @param charset
      * @param cssCode
      */
     private void saveStylesheetFromFetchedCss(CrawlURI curi, String cssCode) {
@@ -555,7 +555,7 @@ public class CrawlerImpl implements Crawler, ContentWriter {
      * persist it
      *
      * @param content
-     * @param curi
+     * @param uri
      */
     private Content saveAndPersistFetchDataToContent(Content content, String uri, int status) {
         // Waiting for a better implementation, we parse here the html content

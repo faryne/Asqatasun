@@ -22,6 +22,8 @@
 
 package org.asqatasun.crawler.extractor.listener;
 
+import java.net.URI;
+
 /**
  * @TODO To be removed
  *
@@ -29,5 +31,10 @@ package org.asqatasun.crawler.extractor.listener;
  */
 public interface ExtractorHTMLListener {
 
+    /**
+     *
+     * @param uri
+     */
+    void computeResource(URI uri);
 
 }

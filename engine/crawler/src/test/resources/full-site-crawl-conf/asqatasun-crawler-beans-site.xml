@@ -12,13 +12,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
-           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
- 
+
     <context:annotation-config/>
 
     <!-- 
@@ -250,10 +246,8 @@
 
     <bean id="extractorCss" class="org.archive.modules.extractor.ExtractorCSS">
     </bean>
-
-    <!--bean id="extractorJs" class="org.archive.modules.extractor.ExtractorJS">
-    </bean>
-    <bean id="extractorSwf" class="org.archive.modules.extractor.ExtractorSWF">
+    <bean id="extractorJs" class="org.archive.modules.extractor.ExtractorJS"></bean>
+    <!--bean id="extractorSwf" class="org.archive.modules.extractor.ExtractorSWF">
     </bean-->
     <!-- assembled into ordered FetchChain bean -->
     <bean id="fetchProcessors" class="org.archive.modules.FetchChain">
@@ -489,7 +483,7 @@
  
     <!-- BDBCOOKIESTORAGE: disk-based cookie storage for FetchHTTP -->
     <bean id="cookieStorage"
-          class="org.archive.modules.fetcher.BdbCookieStorage">
+          class="org.archive.modules.fetcher.BdbCookieStore">
         <!-- <property name="cookiesLoadFile"><null/></property> -->
         <!-- <property name="cookiesSaveFile"><null/></property> -->
         <!-- <property name="bdb">
