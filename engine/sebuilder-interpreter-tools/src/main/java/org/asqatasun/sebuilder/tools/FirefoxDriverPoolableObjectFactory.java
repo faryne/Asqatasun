@@ -59,28 +59,29 @@ public class FirefoxDriverPoolableObjectFactory implements PoolableObjectFactory
     
     @Override
     public FirefoxDriver makeObject() throws Exception {
-        FirefoxBinary ffBinary = new FirefoxBinary();
-        if (System.getProperty(DISPLAY_PROPERTY_KEY) != null) {
-            Logger.getLogger(this.getClass()).info("Setting Xvfb display with value " + System.getProperty(DISPLAY_PROPERTY_KEY));
-            ffBinary.setEnvironmentProperty("DISPLAY", System.getProperty(DISPLAY_PROPERTY_KEY));
-        }
-        FirefoxDriver fd = new FirefoxDriver(ffBinary, ProfileFactory.getInstance().getScenarioProfile());
-        if (this.implicitelyWaitDriverTimeout != null) {
-            fd.manage().timeouts().implicitlyWait(this.implicitelyWaitDriverTimeout.longValue(), TimeUnit.SECONDS);
-        }
-        if (this.pageLoadDriverTimeout != null) {
-            fd.manage().timeouts().pageLoadTimeout(this.pageLoadDriverTimeout.longValue(), TimeUnit.SECONDS);
-        }
-        return fd;
+        return null;
+//        FirefoxBinary ffBinary = new FirefoxBinary();
+//        if (System.getProperty(DISPLAY_PROPERTY_KEY) != null) {
+//            Logger.getLogger(this.getClass()).info("Setting Xvfb display with value " + System.getProperty(DISPLAY_PROPERTY_KEY));
+//            ffBinary.setEnvironmentProperty("DISPLAY", System.getProperty(DISPLAY_PROPERTY_KEY));
+//        }
+//        FirefoxDriver fd = new FirefoxDriver(ffBinary, ProfileFactory.getInstance().getScenarioProfile());
+//        if (this.implicitelyWaitDriverTimeout != null) {
+//            fd.manage().timeouts().implicitlyWait(this.implicitelyWaitDriverTimeout.longValue(), TimeUnit.SECONDS);
+//        }
+//        if (this.pageLoadDriverTimeout != null) {
+//            fd.manage().timeouts().pageLoadTimeout(this.pageLoadDriverTimeout.longValue(), TimeUnit.SECONDS);
+//        }
+//        return fd;
     }
 
     @Override
     public void destroyObject(FirefoxDriver t) throws Exception {
         t.close();
         t.quit();
-        if (t != null) {
-            t.kill();
-        }
+//        if (t != null) {
+//            t.kill();
+//        }
     }
 
     @Override

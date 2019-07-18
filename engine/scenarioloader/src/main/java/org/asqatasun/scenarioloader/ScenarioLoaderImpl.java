@@ -190,8 +190,9 @@ public class ScenarioLoaderImpl implements ScenarioLoader, NewPageListener {
                 implicitelyWaitDriverTimeout = SCENARIO_IMPLICITELY_WAIT_TIMEOUT;
                 firefoxProfile = profileFactory.getScenarioProfile();
             }
-
+            Logger.getLogger(this.getClass()).debug("run");
             Script script = getScriptFromScenario(scenario, firefoxProfile);
+            Logger.getLogger(this.getClass()).debug("run");
             try {
                 if (script.run()) {
                     LOGGER.debug(webResource.getURL()  + " succeeded");

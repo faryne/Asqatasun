@@ -27,6 +27,8 @@ import org.apache.log4j.Logger;
 import org.asqatasun.sebuilder.tools.ProfileFactory;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.util.concurrent.TimeUnit;
 
@@ -66,12 +68,16 @@ public class WebDriverFactory {
     public FirefoxDriver getFirefoxDriver(String display) {
         if (webDriver == null) {
             FirefoxBinary ffBinary = new FirefoxBinary();
-            if (StringUtils.isNotBlank(display)) {
-                Logger.getLogger(this.getClass()).info("Setting Xvfb display with value " + display);
-                ffBinary.setEnvironmentProperty("DISPLAY", display);
-            }
+//            if (StringUtils.isNotBlank(display)) {
+//                Logger.getLogger(this.getClass()).info("Setting Xvfb display with value " + display);
+//                ffBinary.setEnvironmentProperty("DISPLAY", display);
+//            }
             ProfileFactory pf = ProfileFactory.getInstance();
-            webDriver = new FirefoxDriver(ffBinary, pf.getOnlineProfile());
+//            webDriver = new FirefoxDriver(ffBinary, pf.getOnlineProfile());
+            FirefoxOptions options = new FirefoxOptions();
+            options.setHeadless(false);
+            options.setBinary(ffBinary);
+            webDriver  = new FirefoxDriver(options);
             webDriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             webDriver.manage().timeouts().pageLoadTimeout(310, TimeUnit.SECONDS);
         }

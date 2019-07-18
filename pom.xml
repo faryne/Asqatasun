@@ -1544,7 +1544,7 @@
             <dependency>
                 <groupId>org.seleniumhq.selenium</groupId>
                 <artifactId>selenium-java</artifactId>
-                <version>2.39.0</version>
+                <version>3.141.59</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.seleniumhq.selenium</groupId>
@@ -1582,10 +1582,6 @@
                         <groupId>org.apache.httpcomponents</groupId>
                         <artifactId>httpcore</artifactId>
                     </exclusion>
-                    <exclusion>
-                        <groupId>com.google.guava</groupId>
-                        <artifactId>guava</artifactId>
-                    </exclusion>
                 </exclusions>
             </dependency>
             <dependency>
@@ -1616,7 +1612,7 @@
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>10.0.1</version>
+                <version>19.0</version>
             </dependency>
             <!-- html and css parsers -->
             <dependency>

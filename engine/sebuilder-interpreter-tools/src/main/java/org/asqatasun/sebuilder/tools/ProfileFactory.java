@@ -25,12 +25,12 @@ package org.asqatasun.sebuilder.tools;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
-import org.apache.commons.io.FileDeleteStrategy;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.firefox.FirefoxProfile;
-
+import org.springframework.util.FileSystemUtils;
+//
 /**
  *
  * @author jkowalczyk
@@ -147,9 +147,12 @@ public final class ProfileFactory {
         }
         Logger.getLogger(this.getClass()).debug("Start firefox with fresh new profile");
         FirefoxProfile firefoxProfile = new FirefoxProfile();
+        Logger.getLogger(this.getClass()).debug("Start firefox with fresh new profile");
         setUpPreferences(firefoxProfile, loadImage);
+        Logger.getLogger(this.getClass()).debug("Start firefox with fresh new profile");
 //        setUpExtensions(firefoxProfile);
         setUpProxy(firefoxProfile);
+        Logger.getLogger(this.getClass()).debug("Start firefox with fresh new profile");
         return firefoxProfile;
     }
     
@@ -167,13 +170,10 @@ public final class ProfileFactory {
      * @param firefoxProfile 
      */
     public void shutdownFirefoxProfile(FirefoxProfile firefoxProfile) {
-        try {
+
             if (deleteProfileData) {
-                FileDeleteStrategy.FORCE.delete(new File(netExportPathMap.get(firefoxProfile)));
+                FileSystemUtils.deleteRecursively(new File(netExportPathMap.get(firefoxProfile)));
             }
-        } catch (IOException ex) {
-            Logger.getLogger(this.getClass()).error(ex);
-        }
         netExportPathMap.remove(firefoxProfile);
     }
  
@@ -218,11 +218,8 @@ public final class ProfileFactory {
      */
     private void setUpExtensions(FirefoxProfile firefoxProfile) {
         for (String extensionPath : extensionPathList) {
-            try {
-                firefoxProfile.addExtension(new File(extensionPath));
-            } catch (IOException ex) {
-                Logger.getLogger(this.getClass()).error(ex);
-            }
+            firefoxProfile.addExtension(new File(extensionPath));
+
         }
                 
         //----------------------------------------------------------------------
@@ -282,7 +279,7 @@ public final class ProfileFactory {
             if (StringUtils.isNotEmpty(proxyExclusionUrl)) {
                 proxy.setNoProxy(proxyExclusionUrl.replaceAll(";", ","));
             }
-            firefoxProfile.setProxyPreferences(proxy);
+//            firefoxProfile.setProxyPreferences(proxy);
         }
     }
     

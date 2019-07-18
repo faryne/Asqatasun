@@ -21,12 +21,11 @@
  */
 package org.asqatasun.sebuilder.interpreter.webdriverfactory;
 
+import com.google.common.base.Preconditions;
 import com.sebuilder.interpreter.webdriverfactory.WebDriverFactory;
 import java.util.HashMap;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.firefox.FirefoxBinary;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.firefox.*;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class FirefoxDriverFactory implements WebDriverFactory {
@@ -54,17 +53,10 @@ public class FirefoxDriverFactory implements WebDriverFactory {
      */
     @Override
     public RemoteWebDriver make(HashMap<String, String> config) {
-        FirefoxBinary ffBinary = new FirefoxBinary();
-        if (System.getProperty(DISPLAY_PROPERTY) != null) {
-            ffBinary.setEnvironmentProperty(
-                    DISPLAY_PROPERTY.toUpperCase(), 
-                    System.getProperty(DISPLAY_PROPERTY));
-        } else if (System.getenv(DISPLAY_PROPERTY.toUpperCase()) != null) {
-            ffBinary.setEnvironmentProperty(
-                    DISPLAY_PROPERTY.toUpperCase(), 
-                    System.getenv(DISPLAY_PROPERTY.toUpperCase()));
-        }
-        RemoteWebDriver remoteWebDriver = new FirefoxDriver(ffBinary, firefoxProfile);
+        FirefoxOptions options = new FirefoxOptions();
+        options.setHeadless(false);
+        options.setBinary(new FirefoxBinary());
+        RemoteWebDriver remoteWebDriver = new FirefoxDriver(options);
 
         if (screenHeight != -1 && screenWidth!= -1) {
             remoteWebDriver.manage().window().setSize(new Dimension(screenWidth, screenHeight));

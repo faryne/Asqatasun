@@ -264,7 +264,7 @@ public class TgTestRun extends TestRun {
             } catch (InterruptedException ex) {
                 throw new TestRunException(currentStep() + " failed.", ex, currentStep().toString(), stepIndex);
             }
-            String sourceCode = getDriver().getPageSource();
+            String sourceCode = ((FirefoxDriver)getDriver()).getPageSource();
             
             /* ##############################################################
              * ACHTUNG !!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -281,6 +281,8 @@ public class TgTestRun extends TestRun {
             } catch (WebDriverException wde) {
                 getLog().warn(wde.getMessage());
             }
+            Object obj = getDriver().executeScript("document.doctype;");
+
             /*##############################################################*/
 
             /* byte[] snapshot = createPageSnapshot();*/
@@ -398,9 +400,9 @@ public class TgTestRun extends TestRun {
                 getLog().warn("An error occured while closing driver."
                         + " A defunct firefox process may run on the system. "
                         + " Trying to kill before leaving");
-                if (getDriver() instanceof FirefoxDriver) {
-                    ((FirefoxDriver)getDriver()).kill();
-                }
+//                if (getDriver() instanceof FirefoxDriver) {
+//                    ((FirefoxDriver)getDriver()).getCapabilities().kill();
+//                }
             }
         }
     }

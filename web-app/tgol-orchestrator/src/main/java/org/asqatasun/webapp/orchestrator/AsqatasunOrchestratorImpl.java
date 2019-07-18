@@ -313,6 +313,8 @@ public class AsqatasunOrchestratorImpl implements AsqatasunOrchestrator {
      * @return 
      */
     private Audit submitAuditAndLaunch(AuditTimeoutThread auditTimeoutThread, Act act) {
+
+
         synchronized (auditTimeoutThread) {
             Future submitedThread = threadPoolTaskExecutor.submit(auditTimeoutThread);
             while (submitedThread!=null && !submitedThread.isDone()) {
