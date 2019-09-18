@@ -2,13 +2,12 @@
 asqatasun_debian_pkgs:
   - wget
   - bzip2
-  - openjdk-7-jre
+  - openjdk-8-jre
   - unzip
-  - mysql-server
   - libmysql-java
   - python-mysqldb
-  - libtomcat7-java
-  - tomcat7
+  - libtomcat8-java
+  - tomcat8
   - xvfb
   - libdbus-glib-1-2
   - mailutils
@@ -16,7 +15,7 @@ asqatasun_debian_pkgs:
 
 locale: 'en_US.UTF-8'
 
-asqatasun_download_link: "http://download.asqatasun.org/asqatasun-latest.tar.gz"
+asqatasun_download_link: "http://download.asqatasun.org/asqatasun-4.1.0-SNAPSHOT.i386.tar.gz"
 # Asqatasun version that you want to install, get the full list of releases 
 #by clicking in the release tab of the github main interface.
 asqatasun_version: "asqatasun-4.1.0-SNAPSHOT"

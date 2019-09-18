@@ -1,7 +1,6 @@
 ---
 - name: Installing the Asqatasun
-  hosts: all
+  hosts: localhost 
   become: yes
-  gather_facts: yes
   roles:
     - asqatasun

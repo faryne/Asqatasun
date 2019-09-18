@@ -28,25 +28,16 @@
     name: "{{ item }}" 
     update_cache: yes 
     state: installed
-  with_items: asqatasun_debian_pkgs
+  with_items: "{{ asqatasun_debian_pkgs }}"
 
-- name: Copy the asqatasun.cnf template to /etc/mysql/conf.d
-  template:
-    dest: /etc/mysql/conf.d/asqatasun.cnf
-    src: asqatasun.cnf.j2
-    owner: root
-    group: root
-  notify:
-    - Restart MySQL
-    
 - name: Create a soft link for tomcat jar and mysql connector
   file:
     dest: "{{ item.dest }}"
     src: "{{ item.src }}"
     state: link
   with_items:
-    - { src: '/usr/share/java/spring3-instrument-tomcat.jar', dest: '/usr/share/tomcat7/lib/spring3-instrument-tomcat.jar' }
-    - { src: '/usr/share/java/mysql-connector-java.jar', dest: '/usr/share/tomcat7/lib/mysql-connector-java.jar'}
+    - { src: '/usr/share/java/spring3-instrument-tomcat.jar', dest: '/usr/share/tomcat8/lib/spring3-instrument-tomcat.jar' }
+    - { src: '/usr/share/java/mysql-connector-java.jar', dest: '/usr/share/tomcat8/lib/mysql-connector-java.jar'}
 
 - name: Copy the xvfb template to /etc/init.d
   template:
@@ -114,14 +105,14 @@
     --database-db "{{ asqatasun_parameters.db_name }}" \ 
     --database-host "{{ asqatasun_parameters.db_host }}" \ 
     --asqatasun-url http://localhost:8080/asqatasun/ \
-    --tomcat-webapps /var/lib/tomcat7/webapps/ \
-    --tomcat-user tomcat7 \
+    --tomcat-webapps /var/lib/tomcat8/webapps/ \
+    --tomcat-user tomcat8 \
     --asqa-admin-email "{{ asqatasun_parameters.admin_email }}" \
     --asqa-admin-passwd "{{ asqatasun_parameters.admin_passwd }}" \ 
     --firefox-esr-binary-path /opt/firefox-esr/firefox 
     --display-port ":99"
   args:
-    chdir: "/tmp/{{ asqatasun_version }}.i386"
+    chdir: "/tmp/{{ asqatasun_version }}.i386/install"
   when: "asqatasun_app.stdout.find('/etc/asqatasun') == -1"
   notify:
     - Restart Tomcat7

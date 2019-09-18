@@ -6,7 +6,7 @@
 
 - name: Restart Tomcat7
   service: 
-    name: tomcat7
+    name: tomcat8
     state: restarted
 
 - name: Restart xvfb
